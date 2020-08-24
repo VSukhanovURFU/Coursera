@@ -1,0 +1,36 @@
+<!--Форма для просмотра продукта-->
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" [routerLink]="['/products']"><mat-icon>list</mat-icon></a>
+  </div>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title><h2>{{product.prod_name}}</h2></mat-card-title>
+      <mat-card-subtitle>{{product.id}}</mat-card-subtitle>
+    </mat-card-header>
+<!--    Поля с данными о продукте-->
+    <mat-card-content>
+      <dl>
+        <dt>#Ключ:</dt>
+        <dd>{{product.id}}</dd>
+        <dt>Название:</dt>
+        <dd>{{product.prod_name}}</dd>
+        <dt>Описание:</dt>
+        <dd>{{product.prod_desc}}</dd>
+        <dt>Цена:</dt>
+        <dd>{{product.prod_price}}</dd>
+        <dt>Изменен:</dt>
+        <dd>{{product.updated_at | date:'yyyy MM dd'}}</dd>
+      </dl>
+    </mat-card-content>
+<!--    Кнопки навигации-->
+    <mat-card-actions>
+      <a mat-flat-button color="primary" [routerLink]="['/product-edit', product.id]"><mat-icon>edit</mat-icon></a>
+      <a mat-flat-button color="warn" (click)="deleteProduct(product.id)"><mat-icon>delete</mat-icon></a>
+    </mat-card-actions>
+  </mat-card>
+</div>
